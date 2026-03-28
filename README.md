@@ -32,7 +32,7 @@
 
 ## About The Project
 
-A university project for the "Dynamic Data Structures" course that implements a binary tree to manage royal family genealogy and succession rules.
+Binary tree implementation for royal family genealogy and succession. Manages crown transfer rules, living heir tracking, and family member operations.
 
 **`ArbolBinario.cpp`**: Main implementation containing:
 - Binary tree structure for family members
@@ -85,11 +85,13 @@ To get a local copy up and running, compile the source code natively via GCC/G++
 
 ## Usage
 
-Execute the binary to run the interactive console application:
+Execute the binary from the project root directory:
 
 ```sh
-./bin/ArbolBinario.exe
+bin/ArbolBinario.exe
 ```
+
+Note: Always run the program from the repository root to ensure CSV files are found correctly.
 
 ### Menu Options
 
