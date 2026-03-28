@@ -762,9 +762,9 @@ int main() {
     cin >> option2;
 
     if (option2 == 1) {
-        FILE_NAME = "family_tree_ordered.csv";
+        FILE_NAME = "data/family_tree_ordered.csv";
     } else if (option2 == 2) {
-        FILE_NAME = "family_tree_unordered.csv";
+        FILE_NAME = "data/family_tree_unordered.csv";
     } else {
         cerr << "Opción inválida. Finalizando programa.\n";
         return 1;

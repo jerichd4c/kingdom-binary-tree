@@ -1,41 +1,145 @@
-Proyecto relacionado a la materia de estructura dinamica de datos en C++ para la Universidad Rafael Urdaneta:
+<a id="readme-top"></a>
 
-1. Enunciado:
+<div align="center">
+  <h3 align="center">Kingdom Binary Tree</h3>
 
-Una familia de un reino ha estado manteniendo registro de los descendientes del primer rey desde hace años. Cada rey solo ha generado un maximo de dos herederos en todo su reinado
-siendo siempre el primogénito en heredar el trono, con casos donde si toda la rama del rey actual llega a desaparecer entonces se asigna como rey el primer primogénito de la rama de su hermano.
+  <p align="center">
+    A C++ binary tree implementation for managing royal family succession lines
+  </p>
+</div>
 
-2. Requisitos:
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#built-with">Built With</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#usage">Usage</a></li>
+    <li><a href="#csv-file-format">CSV File Format</a></li>
+    <li><a href="#license">License</a></li>
+  </ol>
+</details>
 
-A. Convertir desde un .csv los datos en un arbol binario, el .csv tiene las siguientes columnas:
+## About The Project
 
-id,name, last_name, gender, age, id_father, is_dead, was_king, is_king.
+A university project for the "Dynamic Data Structures" course that implements a binary tree to manage royal family genealogy and succession rules.
 
-    Solo hay hombres o mujeres (H o M).
-    Los valores para was_king, is_king, is_dead es cero o uno. Uno, afirmativo; 0, negativo
+**`ArbolBinario.cpp`**: Main implementation containing:
+- Binary tree structure for family members
+- CSV file import/export functionality
+- Royal succession line calculation with complex rules
+- CRUD operations for family members
+- King death and abdication handling
 
-B. Mostrar la linea de sucesión actual (solo a los vivos).
-C. Asignar un nodo como rey de manera automática en caso de morir el rey actual, las condiciones de asignación son:
+Features:
+- Automatic king assignment when current king dies
+- Succession line display (living members only)
+- Family tree visualization
+- Node modification (except id and father_id)
+- Support for primogeniture and secondary heir rules
+- Automatic crown transfer for kings over 70 years old
 
-    Si el rey murió y tiene hijos, el rey es el primer primogénito vivo encontrado en su árbol.
-    Si el rey murió y no tiene hijos, el rey es el primer primogénito vivo encontrado del árbol de su hermano.
-    Si el hermano esta vivo y no tiene hijos, el hermano se vuelve rey.
-    Si el rey murió y no tiene hermanos ni hijos, el rey es el primer primogénito vivo encontrado del árbol de su tío.
-    si su tío esta vivo y no tiene hijos, su tío se vuelve rey.
-    Si el rey murió y no se puede hallar ni su tío ni su hermano, buscar el primer ancestro con dos hijos y elegir como rey el primer primogénito vivo del árbol del ancestro.
-    Si todos los primogénitos están muertos, seguir las mismas reglas para los hijos segundos, empezando desde el primero hallado desde el rey actual, es decir, tratar a los segundos como primogénitos, hasta que se logre cumplir otra vez la condición de existir un primogénito puro.
-    Si un rey paso de los 70 años, la corona se pasa al primer primogénito vivo de su árbol.
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-D. Cambiar los datos de cualquier nodo del árbol, menos el id y id del padre.
+### Built With
 
-ESTRUCTURA DEL PROYECTO:
+* [![C++][Cpp-shield]][Cpp-url]
 
-*El programa consiste de dos carpetas; "bin", donde se tiene el .EXE y los archivos de prueba (tanto Ordenado como Desordenado)
-y la carpeta "src", donde se tiene el codigo fuente del proyecto (programado en C++)
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-INSTRUCCIONES DE USO:
-1. Ir a la carpeta bin y ejecutar el Archivo "ArbolBinario.EXE" donde se selecciona con que archivo se quiere trabajar
-2. (es importante que los archivos tengan los nombres correctos) y cuando se seleccione el archivo se pueden realizar
-3. las funciones del programa de manera normal.
-NOTA: Si se quiere volver a probar el programa se pueden seleccionar los archivos.TXT y guardarlos como .CSV, revirtiendo cualquier cambio realizado por el usuario.
+## Getting Started
 
+To get a local copy up and running, compile the source code natively via GCC/G++.
+
+### Prerequisites
+
+* GCC / G++ (MinGW on Windows)
+* C++11 or higher
+
+### Installation
+
+1. Clone the repo
+   ```sh
+   git clone https://github.com/yourusername/kingdom-binary-tree.git
+   ```
+2. Navigate to the project directory
+   ```sh
+   cd kingdom-binary-tree
+   ```
+3. Compile the project:
+   ```sh
+   g++ src/ArbolBinario.cpp -o bin/ArbolBinario.exe
+   ```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Usage
+
+Execute the binary to run the interactive console application:
+
+```sh
+./bin/ArbolBinario.exe
+```
+
+### Menu Options
+
+1. **Display family tree** - Shows the complete genealogical tree
+2. **Show succession line** - Displays current line of succession (living members only)
+3. **Modify a node** - Update family member data (except id and father_id)
+4. **Add family member** - Add new member to the family tree
+5. **Kill the king** - Mark current king as dead (triggers automatic succession)
+6. **Show current king** - Display the reigning monarch's information
+7. **Exit** - Close the application
+
+### Sample Data Files
+
+Two CSV files are provided in the `data/` directory:
+- `family_tree_ordered.csv` - Pre-sorted family data
+- `family_tree_unordered.csv` - Random order for testing tree construction
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## CSV File Format
+
+```
+id;name;last_name;gender;age;id_father;is_dead;was_king;is_king
+```
+
+| Column | Description | Values |
+|--------|-------------|--------|
+| id | Unique identifier | Integer |
+| name | First name | String |
+| last_name | Last name | String |
+| gender | Gender | H (Male) / M (Female) |
+| age | Age | Integer |
+| id_father | Father's ID | Integer (empty for root) |
+| is_dead | Is deceased | 0 (No) / 1 (Yes) |
+| was_king | Was previously king | 0 (No) / 1 (Yes) |
+| is_king | Is current king | 0 (No) / 1 (Yes) |
+
+Example entry:
+```
+1;Arthur;Royal;H;80;;0;1;1
+```
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## License
+
+Distributed under the MIT License.
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<!-- MARKDOWN LINKS & IMAGES -->
+[Cpp-shield]: https://img.shields.io/badge/c++-%2300599C.svg?style=for-the-badge&logo=c%2B%2B&logoColor=white
+[Cpp-url]: https://isocpp.org/
